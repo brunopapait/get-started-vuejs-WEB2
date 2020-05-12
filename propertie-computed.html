@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Properties Computed - Vue JS</title>
+</head>
+
+<body>
+  <div id="app">
+    <h1>{{title}}</h1>
+    <h2>{{nome}}</h2>
+    <p>{{toUpperCase}}</p>
+
+    <br>
+
+    <h1>Nome de trás para frente ..</h1>
+    <h2>{{segundoNome}}</h2>
+    <p>{{trasParaFrente}}</p>
+    <br>
+
+    <input type="text" name="" id="1" @keyup.enter="changeValueFirstName($event)">
+    <br>
+
+    {{fullName}}
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        title: 'Properties Computed - Vue JS',
+        nome: 'Bruno',
+        segundoNome: 'propriedades computadas',
+        firstName: "",
+        lastName: ""
+      },
+      // SERVE PARA TER ALGUMA LÓGICA PERSONALIZADA ARMAZENADA EM CACHE COM BASE EM SUAS DEPENDENCIAS
+      computed: {
+        toUpperCase() {
+          return this.nome.toUpperCase()
+        },
+        trasParaFrente() {
+          return this.segundoNome.split('').reverse().join('');
+        },
+        fullName () {
+          return this.firstName;
+        }
+      },
+      methods : {
+        changeValueFirstName(event) {
+            this.firstName = event.target.value;
+          }
+        },
+        changeValue(event) {
+            this.lastName = event.target.value;
+          }
+    })
+  </script>
+</body>
+
+</html>
